@@ -327,7 +327,6 @@ void loop() {
       else {
         if (0 < parser->nerr) {
           /* syntax error */
-          //printf("line %d: %s\n", parser->error_buffer[0].lineno, parser->error_buffer[0].message);
           Serial.write("Syntax Error: ");
           Serial.println(parser->error_buffer[0].message);
         }
