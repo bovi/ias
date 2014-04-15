@@ -199,40 +199,9 @@ void loop() {
         mrb->exc = 0;
       }
       else {
-<<<<<<< HEAD
         /* no */
         if (!mrb_respond_to(mrb,result,mrb_intern(mrb, "inspect"))){
           result = mrb_any_to_s(mrb,result);
-=======
-        if (0 < parser->nerr) {
-          /* syntax error */
-          Serial.write("Syntax Error: ");
-          Serial.println(parser->error_buffer[0].message);
-        }
-        else {
-          /* generate bytecode */
-          n = mrb_generate_code(mrb, parser);
-
-          /* evaluate the bytecode */
-          result = mrb_run(mrb,
-              /* pass a proc for evaulation */
-              mrb_proc_new(mrb, mrb->irep[n]),
-              mrb_top_self(mrb));
-
-          /* did an exception occur? */
-          if (mrb->exc) {
-            /* yes */
-            p(mrb, mrb_obj_value(mrb->exc), 0);
-            mrb->exc = 0;
-          }
-          else {
-            /* no */
-            if (!mrb_respond_to(mrb,result,mrb_intern(mrb, "inspect"))){
-              result = mrb_any_to_s(mrb,result);
-            }
-            p(mrb, result, 1);
-          }
->>>>>>> 7525629c8bd5f2190f0cb1dfe31ebfd3bbe39150
         }
         p(mrb, result, 1);
       }
